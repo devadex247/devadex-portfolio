@@ -8,6 +8,7 @@ export const siteConfig = {
     "I design and build intelligent software systems — from production APIs and full-stack platforms to RAG pipelines, AI agents, and AI-powered products.",
   location: "Lagos, Nigeria",
   status: "open_to_work" as const,
+  avatar: "/avatar.jpg", // Place your photo in public/avatar.jpg (or .png / external url)
   email: "adextechhub@gmail.com",
   github: "https://github.com/devadex247",
   githubHandle: "@devadex247",

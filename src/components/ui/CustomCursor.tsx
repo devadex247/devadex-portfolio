@@ -63,12 +63,11 @@ export function CustomCursor() {
           left: 0,
           width: isHovering ? "10px" : "7px",
           height: isHovering ? "10px" : "7px",
-          background: "var(--text-primary)",
+          background: "#ffffff",
           borderRadius: "50%",
           transition: "width 0.2s ease, height 0.2s ease",
           pointerEvents: "none",
           zIndex: 9999,
-          mixBlendMode: "difference",
         }}
       />
       <div
@@ -79,13 +78,12 @@ export function CustomCursor() {
           left: 0,
           width: isHovering ? "44px" : "32px",
           height: isHovering ? "44px" : "32px",
-          border: "1.5px solid var(--text-primary)",
+          border: "1.5px solid #ffffff",
           borderRadius: "50%",
           transition: "width 0.15s ease, height 0.15s ease, opacity 0.15s ease",
           opacity: isHovering ? 0.6 : 0.3,
           pointerEvents: "none",
           zIndex: 9998,
-          mixBlendMode: "difference",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -97,7 +95,7 @@ export function CustomCursor() {
               fontFamily: "var(--font-mono)",
               fontSize: "0.45rem",
               letterSpacing: "0.08em",
-              color: "var(--text-primary)",
+              color: "#ffffff",
               whiteSpace: "nowrap",
             }}
           >
