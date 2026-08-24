@@ -216,7 +216,7 @@ export function ProjectsSection() {
   );
 
   const featured = filtered.find((p) => p.slug === "medos");
-  const mediums = filtered.filter((p) => p.slug !== "medos");
+  const mediums = filtered.filter((p) => p.slug !== "medos" && p.featured);
 
   return (
     <section
