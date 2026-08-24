@@ -31,11 +31,13 @@ export function CareerTimeline() {
 
         <div
           ref={containerRef}
+          className="timeline-track-container"
           style={{ position: "relative", paddingLeft: "48px", maxWidth: "680px" }}
         >
           {/* Animated SVG path */}
           <div
             aria-hidden="true"
+            className="timeline-track-line"
             style={{
               position: "absolute",
               left: "16px",
@@ -74,6 +76,23 @@ export function CareerTimeline() {
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        @media (max-width: 640px) {
+          .timeline-track-container {
+            padding-left: 28px !important;
+          }
+          .timeline-track-line {
+            left: 6px !important;
+          }
+          .timeline-entry-node {
+            left: -28px !important;
+          }
+          .timeline-entry-card {
+            padding: 18px 16px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -99,6 +118,7 @@ function TimelineEntry({
       {/* Timeline node */}
       <div
         aria-hidden="true"
+        className="timeline-entry-node"
         style={{
           position: "absolute",
           left: "-38px",
@@ -116,6 +136,7 @@ function TimelineEntry({
 
       {/* Entry card */}
       <div
+        className="timeline-entry-card"
         style={{
           background: "var(--bg)",
           border: `1px solid ${entry.current ? "var(--accent)" : "var(--border)"}`,

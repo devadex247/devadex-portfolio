@@ -22,6 +22,7 @@ export function CredibilityStrip() {
     >
       <div className="container">
         <div
+          className="credibility-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
@@ -34,18 +35,19 @@ export function CredibilityStrip() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.08, ...spring }}
+              className="credibility-item"
               style={{
                 display: "flex",
                 flexDirection: "column",
                 gap: "4px",
-                padding: "36px 24px",
+                padding: "32px 20px",
                 borderRight: i < siteConfig.metrics.length - 1 ? "1px solid var(--border)" : "none",
               }}
             >
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "1.75rem",
+                  fontSize: "clamp(1.5rem, 4vw, 1.75rem)",
                   fontWeight: 700,
                   color: "var(--text-primary)",
                   letterSpacing: "-0.02em",
@@ -80,9 +82,21 @@ export function CredibilityStrip() {
         </div>
       </div>
       <style jsx global>{`
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .credibility-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .credibility-grid .credibility-item:nth-child(2) {
+            border-right: none !important;
+          }
+          .credibility-grid .credibility-item:nth-child(1),
+          .credibility-grid .credibility-item:nth-child(2) {
+            border-bottom: 1px solid var(--border) !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .credibility-grid .credibility-item {
+            padding: 24px 16px !important;
           }
         }
       `}</style>

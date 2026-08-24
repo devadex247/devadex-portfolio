@@ -111,7 +111,8 @@ export function AboutSection() {
                             : "1px solid var(--border)",
                           borderRadius: "8px",
                           background: step.highlight ? "var(--accent-subtle)" : "var(--surface)",
-                          minWidth: "280px",
+                          width: "100%",
+                          maxWidth: "360px",
                           transition: "border-color 0.2s ease",
                         }}
                       >
