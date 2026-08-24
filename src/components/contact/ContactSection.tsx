@@ -24,6 +24,7 @@ type ContactState = "idle" | "sending" | "success" | "error";
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
   const [contactState, setContactState] = useState<ContactState>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -54,14 +55,31 @@ export function ContactSection() {
 
   const onSubmit = async (data: FormData) => {
     setContactState("sending");
-    // Mailto fallback — real email integration would require a backend
-    const subject = encodeURIComponent(`[Portfolio] Message from ${data.name}`);
-    const body = encodeURIComponent(`From: ${data.name} <${data.email}>\n\n${data.message}`);
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
-    setTimeout(() => {
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(json.error || "Failed to transmit message. Please check connection.");
+      }
+
       setContactState("success");
       reset();
-    }, 800);
+    } catch (err: unknown) {
+      setContactState("error");
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "Transmission failed. You can also reach out directly via email."
+      );
+    }
   };
 
   return (
@@ -272,7 +290,7 @@ export function ContactSection() {
                         marginBottom: "12px",
                       }}
                     >
-                      CONNECTION ESTABLISHED ✓
+                      TRANSMISSION DELIVERED ✓
                     </div>
                     <p
                       style={{
@@ -280,7 +298,7 @@ export function ContactSection() {
                         color: "var(--text-secondary)",
                       }}
                     >
-                      Opening email client... your message is ready to send.
+                      Your message has been dispatched directly to my inbox. Expect a response soon!
                     </p>
                     <button
                       onClick={() => setContactState("idle")}
@@ -411,6 +429,24 @@ export function ContactSection() {
                       )}
                     </div>
 
+                    {/* Error Banner */}
+                    {errorMessage && (
+                      <div
+                        style={{
+                          padding: "12px 20px",
+                          borderBottom: "1px solid var(--border)",
+                          background: "rgba(220, 38, 38, 0.08)",
+                          color: "var(--status-red, #ef4444)",
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.6875rem",
+                          letterSpacing: "0.04em",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        [!] TRANSMISSION ERROR: {errorMessage}
+                      </div>
+                    )}
+
                     {/* Submit */}
                     <div style={{ padding: "16px 20px" }}>
                       <motion.button
@@ -434,7 +470,7 @@ export function ContactSection() {
                           opacity: contactState === "sending" ? 0.7 : 1,
                         }}
                       >
-                        {contactState === "sending" ? "CONNECTING..." : "[ SEND MESSAGE ]"}
+                        {contactState === "sending" ? "TRANSMITTING..." : "[ SEND MESSAGE ]"}
                       </motion.button>
                     </div>
                   </motion.form>

@@ -130,6 +130,22 @@ export function ProjectPageContent({ project }: { project: Project }) {
               GITHUB ↗
             </a>
           </div>
+
+          {project.image && (
+            <div style={{ 
+              marginTop: "48px", 
+              borderRadius: "12px", 
+              overflow: "hidden", 
+              border: "1px solid var(--border)",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
+            }}>
+              <img 
+                src={project.image} 
+                alt={`${project.title} interface preview`} 
+                style={{ width: "100%", height: "auto", display: "block" }} 
+              />
+            </div>
+          )}
         </div>
       </header>
 
