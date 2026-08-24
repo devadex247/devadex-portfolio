@@ -191,4 +191,92 @@ export const projects: Project[] = [
     github: "https://github.com/devadex247/get2learn",
     demo: "https://get2learn.vercel.app/",
   },
+  {
+    slug: "rankbloom",
+    title: "RankBloom",
+    category: "WEB AGENCY · SEO · AI",
+    tags: ["Web Design", "SEO", "AI"],
+    filterTags: ["FULL-STACK", "AI"],
+    description: "Premium SEO & Web Solutions agency site with AI support.",
+    longDescription:
+      "A high-performance, aesthetically driven web agency platform focused on helping businesses scale through fast, SEO-optimized websites and an integrated AI customer support chatbot.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Vite", "Vercel AI SDK"],
+    featured: false,
+    featuredSize: "small",
+    architecture: [
+      { id: "landing", label: "LANDING", sublabel: "Interactive UI" },
+      { id: "animations", label: "ANIMATIONS", sublabel: "Intersection Observer" },
+      { id: "ai_chat", label: "AI SUPPORT", sublabel: "Vercel AI SDK" },
+    ],
+    problem:
+      "Small businesses need fast, SEO-optimized, mobile-ready websites but often lack technical capabilities or budget for high-end agency setups. Additionally, customer support for incoming leads is bottlenecked by manual responses.",
+    product:
+      "RankBloom is a high-performance web agency site featuring dynamic UI animations, cinematic backgrounds, and an integrated Chat Bloom AI powered by the Vercel AI SDK to provide 24/7 automated customer support and lead capture.",
+    decisions: [
+      "Vanilla HTML/CSS/JS with Vite for maximum performance and minimum bundle size",
+      "Intersection Observer API for scroll-based animations instead of heavy libraries",
+      "Vercel AI SDK for the Chat Bloom AI, enabling streaming responses directly in the browser",
+    ],
+    challenges: [
+      "Optimizing cinematic video backgrounds without hurting core web vitals and load times",
+      "Building complex, interactive mouse-tracking spotlight cards with vanilla JavaScript",
+      "Seamlessly integrating an AI chatbot interface into a purely static front-end",
+    ],
+    results: [
+      "Live demo deployed at rankbloom.vercel.app",
+      "Perfect Lighthouse scores across performance and SEO",
+      "Fully functional streaming AI chat interface",
+    ],
+    improvements: [
+      "Add a proper lead management backend to capture inquiries from the AI chat",
+      "Migrate to Next.js for better routing and built-in image optimization",
+      "Implement a headless CMS for dynamic portfolio updates",
+    ],
+    github: "https://github.com/devadex247/rankbloom",
+    demo: "https://rankbloom.vercel.app",
+  },
+  {
+    slug: "text-stream",
+    title: "Text-Stream CLI",
+    category: "CLI UTILITY · PYTHON",
+    tags: ["CLI", "Python", "Tooling"],
+    filterTags: ["BACKEND", "OPEN SOURCE"],
+    description: "Zero-dependency text metrics and formatting CLI.",
+    longDescription:
+      "A high-speed CLI text pipeline that ingests raw input, calculates structural text metrics, normalizes whitespace formatting, and streams sanitized data directly back to the system clipboard.",
+    technologies: ["Python", "CLI", "Regex"],
+    featured: false,
+    featuredSize: "small",
+    architecture: [
+      { id: "input", label: "RAW TEXT", sublabel: "Terminal stdin" },
+      { id: "metrics", label: "ANALYZER", sublabel: "Word/char counts" },
+      { id: "format", label: "FORMATTER", sublabel: "Whitespace normalizer" },
+      { id: "clipboard", label: "CLIPBOARD", sublabel: "OS Native Pipe" },
+    ],
+    problem:
+      "Dealing with messy, poorly formatted text (extra tabs, duplicate spaces, broken line breaks) requires manual cleanup. Developers and writers need a fast way to get structural metrics and sanitize strings instantly without leaving the terminal.",
+    product:
+      "Text-Stream CLI is a dependency-free Python tool that calculates structural text metrics (word count, reading time) and normalizes formatting, instantly copying the cleaned result to the Windows or macOS system clipboard.",
+    decisions: [
+      "Zero dependencies: built entirely with native Python core modules so no pip install is required",
+      "Auto-clipboard sync using native OS pipelines (clip on Windows, pbcopy on macOS) for immediate utility",
+      "Interactive multi-line terminal input via EOF signals (Ctrl+Z or Ctrl+D) for easy pasting",
+    ],
+    challenges: [
+      "Handling multi-line input streams elegantly across different operating systems",
+      "Writing robust regex and parsing logic to handle all edge cases of messy whitespace",
+      "Interfacing natively with the clipboard without external libraries like pyperclip",
+    ],
+    results: [
+      "Available open-source on GitHub",
+      "Instantly sanitizes large blocks of text",
+      "Cross-platform support for Windows and macOS clipboards",
+    ],
+    improvements: [
+      "Add support for Linux xclip/xsel clipboards",
+      "Implement markdown parsing to strip or convert formatting",
+      "Add a file input flag to process entire text documents directly",
+    ],
+    github: "https://github.com/devadex247/text-stream",
+  },
 ];
