@@ -20,6 +20,7 @@ export function WorkPageContent() {
             <Reveal key={project.slug} delay={i * 0.06}>
               <Link
                 href={`/work/${project.slug}`}
+                className="work-project-card"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "auto 1fr auto",
@@ -43,6 +44,7 @@ export function WorkPageContent() {
                 aria-label={`View ${project.title} case study`}
               >
                 <span
+                  className="work-project-index"
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.625rem",
@@ -82,7 +84,7 @@ export function WorkPageContent() {
                   </div>
                 </div>
 
-                <div style={{ textAlign: "right" }}>
+                <div className="work-project-meta" style={{ textAlign: "right" }}>
                   <span
                     style={{
                       display: "block",
@@ -111,6 +113,30 @@ export function WorkPageContent() {
           ))}
         </div>
       </div>
+
+      <style jsx global>{`
+        @media (max-width: 640px) {
+          .work-project-card {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+            padding: 18px 16px !important;
+          }
+          .work-project-index {
+            display: none !important;
+          }
+          .work-project-meta {
+            text-align: left !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            border-top: 1px solid var(--border-subtle) !important;
+            padding-top: 10px !important;
+          }
+          .work-project-meta span:last-child {
+            margin-top: 0 !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

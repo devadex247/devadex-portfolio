@@ -294,6 +294,7 @@ export function ProjectsSection() {
             {/* Medium cards — OgaMetrics + Get2Learn */}
             {mediums.length > 0 && (
               <div
+                className="projects-medium-grid"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
@@ -344,7 +345,7 @@ export function ProjectsSection() {
 
       <style jsx global>{`
         @media (max-width: 768px) {
-          #work .container > div:last-child > div:last-child {
+          .projects-medium-grid {
             grid-template-columns: 1fr !important;
           }
         }

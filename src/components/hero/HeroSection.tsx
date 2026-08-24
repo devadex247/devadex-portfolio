@@ -254,6 +254,7 @@ export function HeroSection() {
       {/* Layer 2: System visualization */}
       <motion.div
         aria-hidden="true"
+        className="hero-system-viz"
         style={{
           position: "absolute",
           right: "max(5vw, 40px)",
@@ -284,7 +285,7 @@ export function HeroSection() {
           <motion.div
             variants={itemVariants}
             style={{
-              marginBottom: "32px",
+              marginBottom: "28px",
               fontFamily: "var(--font-mono)",
               fontSize: "0.6875rem",
             }}
@@ -294,10 +295,12 @@ export function HeroSection() {
                 display: "inline-flex",
                 flexDirection: "column",
                 gap: "3px",
-                padding: "10px 14px",
+                padding: "8px 12px",
                 border: "1px solid var(--border)",
                 borderRadius: "6px",
                 background: "var(--surface)",
+                maxWidth: "100%",
+                overflowX: "hidden",
               }}
             >
               {siteConfig.bootMessages.map((msg, i) => (
@@ -310,6 +313,10 @@ export function HeroSection() {
                   style={{
                     color: i === 0 ? "var(--accent)" : i === siteConfig.bootMessages.length - 1 ? "var(--status-green, #16a34a)" : "var(--text-secondary)",
                     letterSpacing: "0.08em",
+                    fontSize: "clamp(0.5625rem, 2vw, 0.6875rem)",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                    overflow: "hidden",
                   }}
                 >
                   {i === 0 && <StatusDot />}
@@ -326,7 +333,7 @@ export function HeroSection() {
               display: "flex",
               alignItems: "flex-start",
               justifyContent: "space-between",
-              gap: "24px",
+              gap: "20px",
               marginBottom: "12px",
               flexWrap: "wrap",
             }}
@@ -340,10 +347,12 @@ export function HeroSection() {
               <h1
                 className="text-display"
                 style={{
-                  fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
+                  fontSize: "clamp(2.1rem, 7vw, 5.5rem)",
                   color: "var(--text-primary)",
                   margin: 0,
-                  lineHeight: 1.02,
+                  lineHeight: 1.05,
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
                 }}
               >
                 Adekunle<br />
@@ -356,24 +365,26 @@ export function HeroSection() {
           </motion.div>
 
           {/* Title */}
-          <motion.div variants={itemVariants} style={{ marginBottom: "32px" }}>
+          <motion.div variants={itemVariants} style={{ marginBottom: "28px" }}>
             <div
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "10px",
-                padding: "6px 14px",
+                gap: "8px",
+                padding: "6px 12px",
                 border: "1px solid var(--border)",
                 borderRadius: "4px",
+                maxWidth: "100%",
               }}
             >
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
+                  fontSize: "clamp(0.625rem, 2vw, 0.75rem)",
                   fontWeight: 500,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.08em",
                   color: "var(--text-primary)",
+                  lineHeight: 1.4,
                 }}
               >
                 AI ENGINEER & FULL-STACK SOFTWARE ENGINEER

@@ -30,6 +30,7 @@ export function GitHubSection() {
         />
 
         <div
+          className="github-repos-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -185,8 +186,13 @@ export function GitHubSection() {
       </div>
 
       <style jsx global>{`
-        @media (max-width: 768px) {
-          #github .container > div:first-of-type + div {
+        @media (max-width: 1024px) {
+          .github-repos-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .github-repos-grid {
             grid-template-columns: 1fr !important;
           }
         }

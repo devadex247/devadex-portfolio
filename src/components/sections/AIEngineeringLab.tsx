@@ -113,6 +113,22 @@ export function AIEngineeringLab() {
           </div>
         </Reveal>
       </div>
+
+      <style jsx global>{`
+        @media (max-width: 640px) {
+          .lab-entry-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+            padding: 14px 16px !important;
+          }
+          .lab-entry-meta {
+            width: 100% !important;
+            justify-content: space-between !important;
+            padding-left: 34px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -133,6 +149,7 @@ function LabEntry({
       initial={{ opacity: 0, x: -12 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: index * 0.06, ...spring }}
+      className="lab-entry-row"
       style={{
         display: "flex",
         alignItems: "center",
@@ -149,103 +166,108 @@ function LabEntry({
         (e.currentTarget as HTMLDivElement).style.background = "transparent";
       }}
     >
-      {/* ID */}
-      <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.625rem",
-          color: "var(--text-secondary)",
-          width: "20px",
-          flexShrink: 0,
-        }}
-      >
-        {experiment.id}
-      </span>
-
-      {/* Content */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.75rem",
-            fontWeight: 600,
-            color: "var(--text-primary)",
-            letterSpacing: "0.02em",
-            marginBottom: "3px",
-          }}
-        >
-          {experiment.title}
-        </div>
-        <div
-          style={{
-            fontSize: "0.8125rem",
-            color: "var(--text-secondary)",
-          }}
-        >
-          {experiment.description}
-        </div>
-      </div>
-
-      {/* Tags */}
-      <div
-        style={{
-          display: "flex",
-          gap: "6px",
-          flexShrink: 0,
-          flexWrap: "wrap",
-          justifyContent: "flex-end",
-          maxWidth: "200px",
-        }}
-      >
-        {experiment.tags.map((tag) => (
-          <span
-            key={tag}
-            style={{
-              padding: "2px 7px",
-              border: "1px solid var(--border)",
-              borderRadius: "3px",
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.5rem",
-              color: "var(--text-secondary)",
-              letterSpacing: "0.05em",
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Status */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "5px",
-          flexShrink: 0,
-          width: "72px",
-          justifyContent: "flex-end",
-        }}
-      >
-        <div
-          style={{
-            width: "5px",
-            height: "5px",
-            borderRadius: "50%",
-            background: statusColors[experiment.status],
-            flexShrink: 0,
-            animation: experiment.status === "ACTIVE" ? "pulse-dot 2s ease-in-out infinite" : "none",
-          }}
-        />
+      {/* ID & Title */}
+      <div style={{ display: "flex", alignItems: "flex-start", gap: "14px", flex: 1, minWidth: 0, width: "100%" }}>
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "0.5625rem",
-            color: statusColors[experiment.status],
-            letterSpacing: "0.08em",
+            fontSize: "0.625rem",
+            color: "var(--text-secondary)",
+            width: "20px",
+            flexShrink: 0,
+            marginTop: "2px",
           }}
         >
-          {experiment.status}
+          {experiment.id}
         </span>
+
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              color: "var(--text-primary)",
+              letterSpacing: "0.02em",
+              marginBottom: "3px",
+            }}
+          >
+            {experiment.title}
+          </div>
+          <div
+            style={{
+              fontSize: "0.8125rem",
+              color: "var(--text-secondary)",
+            }}
+          >
+            {experiment.description}
+          </div>
+        </div>
+      </div>
+
+      {/* Meta: Tags + Status */}
+      <div className="lab-entry-meta" style={{ display: "flex", alignItems: "center", gap: "16px", flexShrink: 0 }}>
+        {/* Tags */}
+        <div
+          style={{
+            display: "flex",
+            gap: "6px",
+            flexShrink: 0,
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            maxWidth: "200px",
+          }}
+        >
+          {experiment.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                padding: "2px 7px",
+                border: "1px solid var(--border)",
+                borderRadius: "3px",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.5rem",
+                color: "var(--text-secondary)",
+                letterSpacing: "0.05em",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Status */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+            flexShrink: 0,
+            minWidth: "64px",
+            justifyContent: "flex-end",
+          }}
+        >
+          <div
+            style={{
+              width: "5px",
+              height: "5px",
+              borderRadius: "50%",
+              background: statusColors[experiment.status],
+              flexShrink: 0,
+              animation: experiment.status === "ACTIVE" ? "pulse-dot 2s ease-in-out infinite" : "none",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.5625rem",
+              color: statusColors[experiment.status],
+              letterSpacing: "0.08em",
+            }}
+          >
+            {experiment.status}
+          </span>
+        </div>
       </div>
     </motion.div>
   );
