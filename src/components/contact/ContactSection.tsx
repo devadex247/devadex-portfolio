@@ -57,17 +57,45 @@ export function ContactSection() {
     setContactState("sending");
     setErrorMessage(null);
 
+    const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
+
+    if (!formId) {
+      setContactState("error");
+      setErrorMessage(
+        "Formspree Form ID is not configured yet. Please set NEXT_PUBLIC_FORMSPREE_FORM_ID in your environment variables."
+      );
+      return;
+    }
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`https://formspree.io/f/${formId}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          _subject: `[Portfolio] Transmission from ${data.name}`,
+        }),
       });
 
       const json = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(json.error || "Failed to transmit message. Please check connection.");
+        let errorText = "Failed to transmit message. Please try again.";
+        if (json.errors && Array.isArray(json.errors) && json.errors.length > 0) {
+          errorText =
+            json.errors
+              .map((e: { message?: string }) => e.message)
+              .filter(Boolean)
+              .join(", ") || errorText;
+        } else if (json.error) {
+          errorText = json.error;
+        }
+        throw new Error(errorText);
       }
 
       setContactState("success");
