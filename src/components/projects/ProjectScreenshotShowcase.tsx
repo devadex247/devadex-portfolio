@@ -58,8 +58,8 @@ export function ProjectScreenshotShowcase({ projects }: ProjectScreenshotShowcas
         }}
       >
         {filteredProjects.map((project) => {
-          const mainScreenshot = project.screenshots?.[0];
-          const count = project.screenshots?.length || 0;
+          const mainScreenshotUrl = project.screenshots?.[0]?.url || project.image || `/images/projects/${project.slug}.png`;
+          const count = project.screenshots?.length || 1;
 
           return (
             <motion.div
@@ -118,21 +118,19 @@ export function ProjectScreenshotShowcase({ projects }: ProjectScreenshotShowcas
                   justifyContent: "center",
                 }}
               >
-                {mainScreenshot ? (
-                  <img
-                    src={mainScreenshot.url}
-                    alt={project.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                ) : null}
+                <img
+                  src={mainScreenshotUrl}
+                  alt={project.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease",
+                  }}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
+                />
 
                 {/* Overlay Badge */}
                 <div

@@ -36,7 +36,7 @@ export interface ProjectScreenshot {
   caption: string;
   url: string;
   device?: "desktop" | "mobile" | "tablet";
-  category?: "Dashboard" | "Workflow" | "Mobile" | "Analytics" | "Architecture" | "CLI";
+  category?: string;
   hotspots?: ProjectScreenshotHotspot[];
 }
 

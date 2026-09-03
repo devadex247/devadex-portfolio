@@ -28,7 +28,30 @@ export function ProjectScreenshotGallery({
   title = "INTERFACE SHOWCASE",
   subtitle = "Interactive device mockups, feature breakdowns, and system views.",
 }: ProjectScreenshotGalleryProps) {
-  const screenshots = project.screenshots || [];
+  const screenshots: ProjectScreenshot[] =
+    project.screenshots && project.screenshots.length > 0
+      ? project.screenshots
+      : project.image
+      ? [
+          {
+            id: `${project.slug}-main`,
+            title: `${project.title} Interface`,
+            caption: project.description,
+            url: project.image,
+            device: "desktop",
+            category: "Overview",
+          },
+        ]
+      : [
+          {
+            id: `${project.slug}-default`,
+            title: `${project.title} Landing Page`,
+            caption: project.description,
+            url: `/images/projects/${project.slug}.png`,
+            device: "desktop",
+            category: "Overview",
+          },
+        ];
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<string>("ALL");
   const [lightboxOpen, setLightboxOpen] = useState(false);
