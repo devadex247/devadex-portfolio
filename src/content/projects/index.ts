@@ -20,6 +20,24 @@ export interface Project {
   improvements: string[];
   github: string;
   demo?: string;
+  screenshots?: ProjectScreenshot[];
+}
+
+export interface ProjectScreenshotHotspot {
+  x: number;
+  y: number;
+  title: string;
+  description: string;
+}
+
+export interface ProjectScreenshot {
+  id: string;
+  title: string;
+  caption: string;
+  url: string;
+  device?: "desktop" | "mobile" | "tablet";
+  category?: "Dashboard" | "Workflow" | "Mobile" | "Analytics" | "Architecture" | "CLI";
+  hotspots?: ProjectScreenshotHotspot[];
 }
 
 export interface ArchitectureNode {
@@ -88,6 +106,47 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/devadex247/medos",
     demo: "https://medosapp.vercel.app/",
+    screenshots: [
+      {
+        id: "medos-overview",
+        title: "Ward Clinical Overview",
+        caption: "Real-time hospital ward overview displaying active patient status, MEWS scoring, and triage priority.",
+        url: "/images/projects/medos/overview.png",
+        device: "desktop",
+        category: "Dashboard",
+        hotspots: [
+          { x: 25, y: 40, title: "Patient Roster", description: "Realtime Supabase subscription displaying active hospital ward beds." },
+          { x: 72, y: 30, title: "MEWS Engine", description: "Automated risk score calculation based on patient vital inputs." }
+        ]
+      },
+      {
+        id: "medos-triage",
+        title: "AI MEWS Triage Matrix",
+        caption: "Interactive clinical triage dashboard enforcing evidence-based Modified Early Warning Scores.",
+        url: "/images/projects/medos/triage.png",
+        device: "desktop",
+        category: "Workflow",
+        hotspots: [
+          { x: 50, y: 45, title: "Vital Matrix", description: "Deterministic scoring algorithm validating physiological trends." }
+        ]
+      },
+      {
+        id: "medos-audit",
+        title: "Immutable Audit Log",
+        caption: "Append-only Postgres audit trail recording every state change with user signature and timestamp.",
+        url: "/images/projects/medos/audit.png",
+        device: "desktop",
+        category: "Analytics"
+      },
+      {
+        id: "medos-mobile",
+        title: "Mobile Nurse Viewport",
+        caption: "Optimized mobile view for clinical staff carrying handheld ward devices.",
+        url: "/images/projects/medos/mobile.png",
+        device: "mobile",
+        category: "Mobile"
+      }
+    ]
   },
   {
     slug: "ogametrics",
@@ -142,6 +201,38 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/devadex247/ogametrics",
     demo: "https://ogametrics.vercel.app/",
+    screenshots: [
+      {
+        id: "ogametrics-dashboard",
+        title: "Multi-Tenant Analytics Dashboard",
+        caption: "Data ingestion pipeline status, automated CSV schema normalization, and embeddings index stats.",
+        url: "/images/projects/ogametrics/dashboard.png",
+        device: "desktop",
+        category: "Analytics",
+        hotspots: [
+          { x: 30, y: 35, title: "Schema Detection", description: "Heuristic data type parser normalizing raw uploaded CSVs." }
+        ]
+      },
+      {
+        id: "ogametrics-rag",
+        title: "RAG Vector Query Interface",
+        caption: "Grounded natural language search returning precise analytical responses backed by vector similarity.",
+        url: "/images/projects/ogametrics/rag-search.png",
+        device: "desktop",
+        category: "Workflow",
+        hotspots: [
+          { x: 60, y: 55, title: "Context Retrieval", description: "LangChain vector store retrieval grounding LLM output." }
+        ]
+      },
+      {
+        id: "ogametrics-mobile",
+        title: "Mobile Query Interface",
+        caption: "Mobile view showing quick natural language business queries on the go.",
+        url: "/images/projects/ogametrics/mobile.png",
+        device: "mobile",
+        category: "Mobile"
+      }
+    ]
   },
   {
     slug: "get2learn",
@@ -190,6 +281,32 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/devadex247/get2learn",
     demo: "https://get2learn.vercel.app/",
+    screenshots: [
+      {
+        id: "get2learn-overview",
+        title: "Curated Learning Hub",
+        caption: "Unified developer learning platform displaying progress tracking, playlists, and topic roadmaps.",
+        url: "/images/projects/get2learn/overview.png",
+        device: "desktop",
+        category: "Dashboard"
+      },
+      {
+        id: "get2learn-roadmap",
+        title: "Personalized Recommendation View",
+        caption: "ML-driven content recommendations tailored to developer tech stack goals.",
+        url: "/images/projects/get2learn/roadmap.png",
+        device: "desktop",
+        category: "Workflow"
+      },
+      {
+        id: "get2learn-mobile",
+        title: "Mobile Learning View",
+        caption: "Responsive mobile viewport for watching technical video guides on mobile.",
+        url: "/images/projects/get2learn/mobile.png",
+        device: "mobile",
+        category: "Mobile"
+      }
+    ]
   },
   {
     slug: "rankbloom",
@@ -234,6 +351,32 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/devadex247/rankbloom",
     demo: "https://rankbloom.vercel.app",
+    screenshots: [
+      {
+        id: "rankbloom-hero",
+        title: "Spotlight Card Landing View",
+        caption: "Cinematic dark UI with interactive cursor-tracking spotlight animation.",
+        url: "/images/projects/rankbloom/hero.png",
+        device: "desktop",
+        category: "Dashboard"
+      },
+      {
+        id: "rankbloom-chat",
+        title: "Chat Bloom AI Assistant",
+        caption: "Embedded streaming AI support chat powered by Vercel AI SDK.",
+        url: "/images/projects/rankbloom/ai-chat.png",
+        device: "desktop",
+        category: "Workflow"
+      },
+      {
+        id: "rankbloom-mobile",
+        title: "Mobile Layout Preview",
+        caption: "Responsive mobile viewport of agency services showcase.",
+        url: "/images/projects/rankbloom/mobile.png",
+        device: "mobile",
+        category: "Mobile"
+      }
+    ]
   },
   {
     slug: "text-stream",
@@ -278,6 +421,180 @@ export const projects: Project[] = [
       "Add a file input flag to process entire text documents directly",
     ],
     github: "https://github.com/devadex247/text-stream",
+    screenshots: [
+      {
+        id: "text-stream-cli",
+        title: "CLI Terminal Stream Input",
+        caption: "Command line text analyzer reading stdin stream and outputting formatted metrics.",
+        url: "/images/projects/text-stream/terminal.png",
+        device: "desktop",
+        category: "CLI"
+      },
+      {
+        id: "text-stream-output",
+        title: "Clipboard Pipeline Execution",
+        caption: "Direct stdout pipe to system clipboard with instant whitespace normalization.",
+        url: "/images/projects/text-stream/output.png",
+        device: "desktop",
+        category: "Analytics"
+      }
+    ]
+  },
+  {
+    slug: "spatial-nexus",
+    title: "Spatial Nexus",
+    category: "GEOSPATIAL · FULL-STACK · MAPPING",
+    tags: ["Geospatial", "Mapping", "Full-Stack"],
+    filterTags: ["FULL-STACK", "AI"],
+    description: "Interactive geospatial data platform with real-time mapping.",
+    longDescription:
+      "A full-stack geospatial intelligence platform that transforms raw location data into interactive, real-time maps and spatial analytics. Built for developers and organizations that need to visualize, query, and act on geographic data at scale.",
+    technologies: ["React", "TypeScript", "Mapbox GL", "Node.js", "PostgreSQL", "PostGIS"],
+    featured: false,
+    featuredSize: "small",
+    architecture: [
+      { id: "data", label: "LOCATION DATA", sublabel: "Raw coordinates" },
+      { id: "ingestion", label: "DATA INGESTION", sublabel: "Streaming pipeline" },
+      { id: "postgis", label: "POSTGIS", sublabel: "Spatial indexing" },
+      { id: "api", label: "SPATIAL API", sublabel: "GeoJSON endpoints" },
+      { id: "mapbox", label: "MAPBOX GL", sublabel: "Vector tile rendering" },
+      { id: "ui", label: "INTERACTIVE MAP", sublabel: "Real-time UI" },
+    ],
+    problem:
+      "Geospatial data is notoriously hard to work with — raw coordinates are meaningless without proper indexing, rendering, and querying tools. Most teams rely on expensive GIS software or heavyweight platforms that are slow to integrate and hard to customize.",
+    product:
+      "Spatial Nexus is a full-stack geospatial platform that ingests location data, stores it with PostGIS spatial indexing, exposes it via a clean GeoJSON API, and renders it as interactive vector tile maps using Mapbox GL. The result is a fast, customizable spatial intelligence layer that any team can plug into their workflow.",
+    decisions: [
+      "PostGIS chosen for native spatial indexing and powerful geometric query operators (ST_Within, ST_Distance, etc.)",
+      "Mapbox GL for client-side vector tile rendering — performant at scale without server-side map generation",
+      "GeoJSON as the canonical data format throughout the pipeline for maximum interoperability",
+      "PostgreSQL as the primary database to leverage the mature PostGIS ecosystem",
+    ],
+    challenges: [
+      "Efficiently indexing and querying large volumes of point and polygon geometry data without query timeouts",
+      "Keeping map rendering performant when displaying thousands of concurrent spatial features",
+      "Designing an intuitive API for spatial queries that abstracts PostGIS complexity for consuming apps",
+    ],
+    results: [
+      "Live demo deployed at spatial-nexus.vercel.app",
+      "Interactive map with real-time spatial querying operational",
+      "PostGIS-backed spatial API with GeoJSON endpoints",
+    ],
+    improvements: [
+      "Add real-time data streaming via WebSockets for live location tracking",
+      "Implement heatmap and clustering layers for high-density point datasets",
+      "Build an admin dashboard for managing spatial datasets and access control",
+      "Add raster tile support for satellite imagery overlays",
+    ],
+    github: "https://github.com/spatial-nexus",
+    demo: "https://spatial-nexus.vercel.app/",
+    screenshots: [
+      {
+        id: "spatial-nexus-map",
+        title: "Interactive Mapbox GL Map",
+        caption: "Real-time vector tile rendering with point clustering and geographic boundary filtering.",
+        url: "/images/projects/spatial-nexus/map.png",
+        device: "desktop",
+        category: "Dashboard",
+        hotspots: [
+          { x: 45, y: 50, title: "Vector Layer", description: "Mapbox GL client-side vector rendering of PostGIS data points." }
+        ]
+      },
+      {
+        id: "spatial-nexus-postgis",
+        title: "Spatial API GeoJSON View",
+        caption: "High-speed API endpoints querying PostGIS ST_Within spatial queries.",
+        url: "/images/projects/spatial-nexus/postgis-api.png",
+        device: "desktop",
+        category: "Analytics"
+      },
+      {
+        id: "spatial-nexus-mobile",
+        title: "Mobile Field Inspector View",
+        caption: "Mobile-responsive geospatial query tool for field inspectors.",
+        url: "/images/projects/spatial-nexus/mobile.png",
+        device: "mobile",
+        category: "Mobile"
+      }
+    ]
+  },
+  {
+    slug: "africut-sell-ai",
+    title: "AfriCut Sell AI",
+    category: "AI · SOCIAL COMMERCE · CONTENT GENERATION",
+    tags: ["AI", "Social Commerce", "Content Generation"],
+    filterTags: ["AI", "FULL-STACK"],
+    description: "AI-powered social commerce platform for African merchants.",
+    longDescription:
+      "A full-stack, AI-powered social commerce and content generation platform designed for African and global merchants, creators, and entrepreneurs. Bridges the gap between raw product footage and high-converting, ready-to-publish social media sales kits for WhatsApp, Instagram, TikTok, Facebook, and X.",
+    technologies: ["TypeScript", "Vite", "Google Gemini AI", "Dala Studio", "Node.js"],
+    featured: false,
+    featuredSize: "small",
+    architecture: [
+      { id: "video", label: "PRODUCT FOOTAGE", sublabel: "Raw video input" },
+      { id: "gemini", label: "GEMINI AI", sublabel: "Content analysis" },
+      { id: "dala", label: "DALA STUDIO", sublabel: "Media processing" },
+      { id: "generator", label: "CONTENT ENGINE", sublabel: "Sales copy + captions" },
+      { id: "kit", label: "SALES KIT", sublabel: "Multi-platform export" },
+    ],
+    aiArchitecture: [
+      { id: "footage", label: "PRODUCT VIDEO" },
+      { id: "vision", label: "VISION AI", sublabel: "Gemini multimodal" },
+      { id: "copy", label: "COPY GENERATION", sublabel: "Sales-optimized text" },
+      { id: "output", label: "SOCIAL KIT", sublabel: "Platform-ready content" },
+    ],
+    problem:
+      "African micro and small businesses lack the tools and resources to produce high-converting social media content from their raw product footage. Content creation is time-consuming, expensive, and requires skills most merchants do not have — leaving enormous sales potential untapped on WhatsApp, Instagram, TikTok, and beyond.",
+    product:
+      "AfriCut Sell AI is a mobile-first platform powered by Google Gemini AI and Dala Studio. Merchants upload raw product videos, and the AI engine analyzes the footage, generates platform-specific sales copy, captions, and hashtags, and packages everything into a ready-to-publish social media sales kit for WhatsApp, Instagram, TikTok, Facebook, and X.",
+    decisions: [
+      "Google Gemini AI chosen for its multimodal capabilities — analyzing both video content and generating contextual sales copy in a single model",
+      "Mobile-first design as the primary interface, reflecting how African merchants predominantly use smartphones for business",
+      "Vite for a fast, lightweight frontend build with minimal overhead",
+      "Platform-specific output formats (WhatsApp, Instagram, TikTok) to maximize content relevance and engagement",
+      "Dala Studio for media processing and content packaging into polished sales kits",
+    ],
+    challenges: [
+      "Generating sales copy that resonates with culturally diverse African markets and local buying behaviors",
+      "Processing and analyzing video content in real time without excessive latency on mobile connections",
+      "Producing platform-appropriate formats for multiple social networks with distinct character limits, aspect ratios, and tone requirements",
+      "Designing a UX simple enough for non-technical merchants to use with zero onboarding friction",
+    ],
+    results: [
+      "Live demo deployed at afri-cut-sell-7e47.vercel.app",
+      "End-to-end pipeline from product video to social sales kit operational",
+      "Multi-platform output covering WhatsApp, Instagram, TikTok, Facebook, and X",
+      "Powered by Gemini AI with mobile-first interface optimized for African merchants",
+    ],
+    improvements: [
+      "Add support for audio-only product pitches as an input modality",
+      "Build a merchant dashboard to manage, schedule, and track published content",
+      "Integrate direct publishing to social platforms via their APIs",
+      "Add analytics to track which AI-generated content drives the most sales conversions",
+    ],
+    github: "https://github.com/devadex247/africut-sell-AI",
+    demo: "https://afri-cut-sell-7e47.vercel.app/",
+    screenshots: [
+      {
+        id: "africut-upload",
+        title: "Mobile Product Video Ingest",
+        caption: "Mobile-first raw product video uploader with real-time video processing status.",
+        url: "/images/projects/africut-sell-ai/mobile-app.png",
+        device: "mobile",
+        category: "Mobile"
+      },
+      {
+        id: "africut-kit",
+        title: "Generated Social Sales Kit",
+        caption: "Multi-platform export kit generating tailored captions and hashtags for WhatsApp, TikTok, and IG.",
+        url: "/images/projects/africut-sell-ai/sales-kit.png",
+        device: "desktop",
+        category: "Workflow",
+        hotspots: [
+          { x: 50, y: 35, title: "Gemini Vision AI", description: "Multimodal video analysis generating conversion-focused sales copy." }
+        ]
+      }
+    ]
   },
   {
     slug: "spatial-nexus",

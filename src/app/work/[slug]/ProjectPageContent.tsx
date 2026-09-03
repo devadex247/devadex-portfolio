@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArchitectureDiagram } from "@/components/architecture/ArchitectureDiagram";
+import { ProjectScreenshotGallery } from "@/components/projects/ProjectScreenshotGallery";
 import type { Project } from "@/content/projects";
 
 const bodyText: React.CSSProperties = {
@@ -131,21 +132,8 @@ export function ProjectPageContent({ project }: { project: Project }) {
             </a>
           </div>
 
-          {project.image && (
-            <div style={{ 
-              marginTop: "48px", 
-              borderRadius: "12px", 
-              overflow: "hidden", 
-              border: "1px solid var(--border)",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
-            }}>
-              <img 
-                src={project.image} 
-                alt={`${project.title} interface preview`} 
-                style={{ width: "100%", height: "auto", display: "block" }} 
-              />
-            </div>
-          )}
+          {/* Screenshot Space Gallery */}
+          <ProjectScreenshotGallery project={project} />
         </div>
       </header>
 
